@@ -16,7 +16,7 @@ RUN sudo apt-get install -y mono-devel
 RUN sudo apt-get install -y git
 RUN sudo mozroots --sync --import
 RUN sudo git clone https://github.com/Haacked/Nuget /tmp/nuget
-RUN /bin/bash -c "/tmp/nuget/build.sh"
+RUN /bin/bash -c 'cd /tmp/nuget ./build.sh'
 #CMD ['/tmp/nuget/build.sh']
 RUN sudo cp /tmp/nuget/lib/NuGet.exe /usr/bin/NuGet.exe
 
