@@ -16,11 +16,12 @@ RUN sudo apt-get install -y mono-devel
 RUN sudo apt-get install -y git
 RUN sudo mozroots --sync --import
 RUN sudo git clone https://github.com/Haacked/Nuget /tmp/nuget
-CMD ['/tmp/nuget/build.sh']
+RUN /bin/bash -c "/tmp/nuget/build.sh"
+#CMD ['/tmp/nuget/build.sh']
 RUN sudo cp /tmp/nuget/lib/NuGet.exe /usr/bin/NuGet.exe
 
 # Add Integrate NuGet source
-RUN mono /usr/bin/NuGet.exe sources add -name Integrate https://www.myget.org/F/integrate/auth/dda94e9b-6e72-41f0-8afa-d87526e5ec7f/
+RUN  mono /usr/bin/NuGet.exe sources add -name Integrate https://www.myget.org/F/integrate/auth/dda94e9b-6e72-41f0-8afa-d87526e5ec7f/
 
 #CMD ["alias nuget='mono /usr/bin/NuGet.exe'"]
 
