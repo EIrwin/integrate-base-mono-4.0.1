@@ -19,6 +19,7 @@ RUN sudo git clone https://github.com/Haacked/Nuget /tmp/nuget
 CMD ['/tmp/nuget/build.sh']
 RUN sudo cp /tmp/nuget/lib/NuGet.exe /usr/bin/NuGet.exe
 
+# alias 'nuget' for easy executions
 #CMD ["alias","nuget='mono /usr/bin/NuGet.exe'"]
 
 # Cleanup Uneeded NuGet Resources
