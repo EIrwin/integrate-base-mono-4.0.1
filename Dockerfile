@@ -11,3 +11,17 @@ RUN apt-get update && apt-get install -y \
 RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 RUN echo "deb http://download.mono-project.com/repo/debian wheezy snapshots 4.0.0" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 RUN sudo apt-get install -y mono-devel
+
+# Build and Configure NuGet
+RUN sudo apt-get install -y git
+RUN sudo mozroots --sync --import
+RUN sudo git clone https://github.com/Haacked/Nuget /tmp/nuget
+CMD ['/tmp/nuget/build.sh']
+RUN sudo cp /tmp/nuget/lib/NuGet.exe /usr/bin/NuGet.exe
+
+#CMD ["alias","nuget='mono /usr/bin/NuGet.exe'"]
+
+# Cleanup Uneeded NuGet Resources
+RUN sudo rm -r /tmp/nuget
+
+
